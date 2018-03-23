@@ -1,0 +1,17 @@
+{
+  "name": "inbox-by-gmail-desktop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Johnny Bui",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  },
+  "dependencies": {
+    "node-notifier": "^5.2.1"
+  }
+}
