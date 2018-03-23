@@ -3,14 +3,13 @@ const notifier = require('node-notifier');
 const url = require('url');
 const path = require('path');
 
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const { app, BrowserWindow } = require('electron');
 
 let splashWindow;
 let mainWindow;
 
 function createSplash() {
-  splashWindow = new BrowserWindow( { width: 350, height: 380, frame: false });
+  splashWindow = new BrowserWindow({ width: 350, height: 380, frame: false });
   splashWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'splash.html'),
     protocol: 'file:',
@@ -23,15 +22,20 @@ function createWindow() {
     title: 'My notification',
     message: 'Hello, there!'
   });
+
   // Create the browser window.
   const screenElectron = electron.screen;
   const mainScreen = screenElectron.getPrimaryDisplay();
   mainWindow = new BrowserWindow({ width: mainScreen.size.width * .8, height: mainScreen.size.height * .8, show: false });
 
   // and load the index.html of the app.
-  mainWindow.loadURL('https://inbox.google.com');
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }));
 
-  mainWindow.webContents.on('did-finish-load', () => {
+  mainWindow.once('ready-to-show', () => {
     splashWindow.close();
     mainWindow.show();
   });
