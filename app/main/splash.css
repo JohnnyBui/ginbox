@@ -1,0 +1,10 @@
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html, body {
+  width: 350px;
+  height: 380px;
+  overflow: hidden;
+}
