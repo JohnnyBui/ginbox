@@ -28,11 +28,6 @@ function createWindow() {
     slashes: true
   }));
 
-  mainWindow.once('ready-to-show', () => {
-    splashWindow.close();
-    mainWindow.show();
-  });
-
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
@@ -64,11 +59,16 @@ app.on('activate', () => {
   }
 });
 
+ipcMain.on('webview-ready', (event) => {
+  splashWindow.close();
+  mainWindow.show();
+});
+
 ipcMain.on('new-unread-count', (event, arg) => {
   notifier.notify({
     title: `New Unread Message${arg > 1 ? 's' : ''}`,
     message: `You have ${arg} new unread message${arg > 1 ? 's' : ''}!`,
-    icon: path.join(__dirname, '../assets/icon.png'),
+    icon: path.join(__dirname, '../assets/iconTray.png'),
     sound: true,
     wait: true
   });
