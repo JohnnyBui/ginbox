@@ -1,18 +1,32 @@
 {
-  "name": "inbox-by-gmail-desktop",
+  "name": "ginbox",
   "version": "1.0.0",
-  "description": "",
+  "description": "An unofficial Inbox by Gmail desktop app, developed on top of the official webapp, works on Windows, macOS, and Linux",
   "main": "app/main",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "build --dir"
   },
+  "build": {
+    "appId": "me.phucbui.ginbox",
+    "productName": "Ginbox"
+  },
+  "repository": "https://github.com/JohnnyBui/ginbox",
+  "keywords": [
+    "inbox",
+    "gmail",
+    "electron",
+    "inbox by gmail",
+    "google",
+    "google inbox"
+  ],
   "author": "Johnny Bui",
   "license": "MIT",
+  "dependencies": {
+    "node-notifier": "^5.2.1"
+  },
   "devDependencies": {
     "electron": "^1.8.4",
     "eslint": "^4.19.1"
-  },
-  "dependencies": {
-    "node-notifier": "^5.2.1"
   }
 }
