@@ -67,6 +67,28 @@ app.on('activate', () => {
 ipcMain.on('new-unread-count', (event, arg) => {
   notifier.notify({
     title: `New Unread Message${arg > 1 ? 's' : ''}`,
-    message: `You have ${arg} new unread message${arg > 1 ? 's' : ''}!`
+    message: `You have ${arg} new unread message${arg > 1 ? 's' : ''}!`,
+    icon: path.join(__dirname, '../assets/icon.png'),
+    sound: true,
+    wait: true
+  });
+
+  notifier.on('click', function(notifierObject, options) {
+    mainWindow.focus();
+  });
+});
+
+ipcMain.on('new-message-preview', (event, arg) => {
+  notifier.notify({
+    title: arg.sender,
+    subtitle: arg.subject,
+    message: arg.message,
+    icon: path.join(__dirname, '../assets/icon.png'),
+    sound: true,
+    wait: true
+  });
+
+  notifier.on('click', function(notifierObject, options) {
+    mainWindow.focus();
   });
 });
