@@ -59,7 +59,7 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.on('webview-ready', (event) => {
+ipcMain.once('webview-ready', (event) => {
   splashWindow.close();
   mainWindow.show();
 });
